@@ -1,0 +1,16 @@
+{
+  "scripts": {
+    "tw": "tailwindcss -i ./src/styles.css -o ./public/css/app.css --watch",
+    "js": "webpack",
+    "dev": "webpack && npm run tw"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.3",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  },
+  "dependencies": {
+    "axios": "^1.7.1",
+    "moment": "^2.30.1"
+  }
+}

@@ -5,15 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog</title>
     <link rel="stylesheet" href="css/app.css">
+    <link rel="stylesheet" href="fa_icons/css/all.css">
     <script src="js/app.js"></script>
 </head>
-<body>
+<body class="bg-slate-100">
 
-    <div class="h-20 bg-teal-500 text-white">
-        <h1 class="text-2xl">Hello</h1>
-        <p id="time_test"></p>
+    <?php include_once 'components/header.html'  ?>
+
+    <div class="min-h-screen">
+
     </div>
 
-    
+    <?php include_once 'components/footer.html'  ?>
+
 </body>
 </html>

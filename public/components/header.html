@@ -23,28 +23,77 @@
             </button>
 
             <!-- Navigation Toggle Button -->
-            <button class="block md:hidden">
+            <button class="block md:hidden" id="toggle_btn">
                 <i class="fas fa-bars"></i>
             </button>
         </section>
 
         <!-- Navigation Section -->
-        <section class="md:static bg-white fixed top-0 z-20 h-dvh w-72 md:w-auto">
+        <section class="md:static bg-white fixed top-0 z-20 h-dvh w-72 md:w-auto -left-72 transition-all duration-300" id="nav_bar">
             <div class="md:hidden text-right">
-                <button class="p-4 border">
+                <button class="p-4 border" onclick="toggleMenu('close')">
                     <i class="fas fa-times"></i>
                 </button>
             </div>
-            <ul class="flex justify-center flex-col md:flex-row">
+            <ul class="flex justify-center flex-col md:flex-row" id="menu">
                 <li>
-                    <a href="#" class="nav-style">Home</a>
-                </li>
-                <li>
-                    <a href="#" class="nav-style">Home</a>
+                    <a href="index.php" class="nav-style">Home</a>
                 </li>
             </ul>
         </section>
     </div>
 </header>
 
-<div class="fixed top-0 left-0 h-screen w-full bg-black bg-opacity-50 z-10 md:hidden"></div>
+<div id="overlay" class="fixed top-0 left-0 h-screen w-full bg-black bg-opacity-50 z-10 hidden" onclick="toggleMenu('close')"></div>
+
+<script>
+    // Make an API Call to fetch all blog categories
+    axios.get('http://localhost/fake_blog_api/category/fetch.php')
+    .then((res) => {
+        let categories = res.data;
+        let menuEl = document.getElementById('menu');
+        let menus = `<li>
+                        <a href="index.php" class="nav-style">Home</a>
+                    </li>`;
+        // Loop through the cateries
+        categories.forEach((category) => {
+            // Using the document createElement JS Class
+            // let menuList = document.createElement('li');
+            // let link = document.createElement('a');
+
+            // link.classList.add('nav-style');
+            // link.setAttribute('href', `categories.php?category_name=${category.category_name}`);
+            // link.innerHTML = category.category_name;
+            // menuList.append(link);
+
+            // menuEl.appendChild(menuList);
+            
+            menus += `<li>
+                            <a href="categories.php?category_name=${category.category_name}" class="nav-style">${category.category_name}</a>
+                        </li>`;
+            
+        });
+
+        menuEl.innerHTML = menus; 
+    })
+
+    // Togggle Mobile Nav
+    document.getElementById('toggle_btn').addEventListener('click', ()=>{
+        toggleMenu('open')
+    })
+
+    let toggleMenu = (state) => {
+        let overlay = document.getElementById('overlay');
+        let navBar = document.getElementById('nav_bar');
+
+        if (state == 'open') {
+            overlay.classList.remove('hidden');
+            navBar.classList.remove('-left-72');
+            navBar.classList.add('left-0');
+        } else {
+            overlay.classList.add('hidden');
+            navBar.classList.add('-left-72');
+            navBar.classList.remove('left-0');
+        }
+    }
+</script>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog</title>
+    <link rel="shortcut icon" href="assets/images/favicon.png" type="image/*">
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="fa_icons/css/all.css">
     <script src="js/app.js"></script>

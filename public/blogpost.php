@@ -15,8 +15,9 @@
 
     <div class="min-h-screen">
         <h1 class="my-10">
-            Category
+            Blog Post Details
         </h1>
+
     </div>
 
     <?php include_once 'components/footer.html'  ?>

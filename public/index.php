@@ -14,6 +14,8 @@
     <?php include_once 'components/header.html'  ?>
 
     <div class="min-h-screen">
+        <?php include_once 'components/homebanner.html'  ?>
+
 
     </div>
 

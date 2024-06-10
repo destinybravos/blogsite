@@ -48,7 +48,7 @@
 
 <script>
     // Make an API Call to fetch all blog categories
-    axios.get('http://localhost/fake_blog_api/api/category/fetch.php')
+    axios.get('http://localhost/fake_blog_api/v1/category/fetch.php')
     .then((res) => {
         let categories = res.data;
         let menuEl = document.getElementById('menu');

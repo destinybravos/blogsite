@@ -10,9 +10,10 @@
 
 
 <script>
-    axios.get('https://jsonplaceholder.typicode.com/posts')
+    var baseUrl = "http://localhost/fake_blog_api/";
+    axios.get(`${baseUrl}/v1/posts/fetch_all.php`)
     .then((res) => {
-        filterBannerPost(res.data);
+        filterBannerPost(res.data.posts);
     })
 
     let filterBannerPost = (posts) => {
@@ -22,18 +23,18 @@
         let postEls = '';
         filteredPost.forEach((post, index) => {
             if (index == 0) {
-                postEls += `<a href="blogpost.php?post_id=${post.id}" class="bg-indigo-400 block row-span-3 bg-cover bg-center bg-no-repeat" style="background-image: url('assets/dummy/blog_bn_main.jpg');">
+                postEls += `<a href="blogpost.php?post_id=${post.id}" class="bg-indigo-400 block row-span-3 bg-cover bg-center bg-no-repeat" style="background-image: url('${baseUrl + post.poster_image}');">
                                 <aside class="flex items-end w-full h-full bg-gradient-to-b from-transparent via-transparent to-[#00000089]">
                                     <section class="text-white p-4">
                                         <label class="inline-block py-1 px-3 text-xs bg-slate-800">
-                                            Technology
+                                            ${post.category.category_name}
                                         </label>
                                         <h2 class="text-3xl font-bold mb-2  line-clamp-2">
                                             ${post.title}
                                         </h2>
                                         <div class="text-xs flex gap-4 items-center">
-                                            <span>Author </span>
-                                            <span> June 28, 2021 </span>
+                                            <span>${post.author.fullname} </span>
+                                            <span> ${moment(post.created_at).fromNow()} </span>
                                         </div>
                                     </section>
                                 </aside>
@@ -41,19 +42,19 @@
             }else{
                 postEls += `<a href="blogpost.php?post_id=${post.id}" class="flex items-center">
                                 <aside class="w-1/2 h-32 flex justify-center items-center overflow-hidden">
-                                    <img src="assets/dummy/blog_bn_thumb.jpg" alt="image" class="max-w-full">
+                                    <img src="${baseUrl + post.poster_image}" alt="image" class="max-w-full">
                                 </aside>
                                 <aside class="w-1/2">
                                     <section class="p-4">
                                         <label class="inline-block py-1 px-3 text-white text-xs bg-slate-800">
-                                            Technology
+                                            ${post.category.category_name}
                                         </label>
                                         <h2 class="text-2xl font-bold my-2 line-clamp-2">
                                             ${post.title}
                                         </h2>
                                         <div class="text-sm flex gap-4 items-center text-slate-600">
-                                            <span>Author </span>
-                                            <span> June 28, 2021 </span>
+                                            <span>${post.author.fullname} </span>
+                                            <span> ${moment(post.created_at).fromNow()} </span>
                                         </div>
                                     </section>
                                 </aside>

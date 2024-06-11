@@ -47,8 +47,9 @@
 <div id="overlay" class="fixed top-0 left-0 h-screen w-full bg-black bg-opacity-50 z-10 hidden md:hidden" onclick="toggleMenu('close')"></div>
 
 <script>
+    var baseUrl = 'http://localhost/fake_blog_api';
     // Make an API Call to fetch all blog categories
-    axios.get('http://localhost/fake_blog_api/api/category/fetch.php')
+    axios.get(`${baseUrl}/v1/category/fetch.php`)
     .then((res) => {
         let categories = res.data;
         let menuEl = document.getElementById('menu');

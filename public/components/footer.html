@@ -93,3 +93,96 @@
         </section>
     </div>
 </footer>
+
+<!-- Overlay -->
+<div id="auth_overlay" class="fixed top-0 left-0 h-screen w-full bg-black bg-opacity-50 z-10 hidden" onclick="toggleAuthOverlay('close')"></div>
+<!-- Auth Modal -->
+ <div id="auth_modal" class="fixed top-0 left-0 h-screen w-full z-20 hidden items-center justify-center p-4"  onclick="toggleAuthOverlay('close')">
+    <section class="min-h-10 bg-white w-full max-w-sm py-3 px-4">
+        <div id="modal_content">
+
+        </div>
+    </section>
+ </div>
+
+<script>
+    // sessionStorage.setItem('isLogin', null);
+    // sessionStorage.removeItem('isLogin');
+    // Using an object in the storage
+    let user = {
+        name : "James Agban",
+        phone : '09034545523',
+        email : 'jamesa@gmail.com'
+    }
+
+    // let userString = JSON.stringify(user);
+    // let revertedUserObj = JSON.parse(userString);
+    sessionStorage.setItem('user', JSON.stringify(user))
+    let userString = sessionStorage.getItem('user');
+    let revertedUserObj = JSON.parse(userString);
+    console.log(userString, revertedUserObj);
+
+
+    // Check Login State
+    let isLogin = () => {
+        let loginState = false;
+        if (sessionStorage.isLogin !== undefined && sessionStorage.isLogin !== null && sessionStorage.isLogin !== 'null' && sessionStorage.isLogin !== '') {
+            loginState = true;
+        }
+        return loginState;
+    }
+    
+
+    // Reactions
+    let likePost = (e) => {
+        if (isLogin()) {
+            let element = null;
+            let clickedElement = e.target;
+            if(clickedElement.tagName.toLowerCase() == 'button'){
+                element = clickedElement.children[0];
+            }else{
+                element = clickedElement;
+            }
+
+            if (element.classList.contains('fas')) {
+                element.classList.remove('fas');
+                element.classList.add('far');
+                element.classList.remove('text-red-500');
+            } else {
+                element.classList.remove('far');
+                element.classList.add('fas');
+                element.classList.add('text-red-500');
+            }
+        }else{
+            toggleAuthOverlay('open')
+        }
+    }
+
+    let toggleAuthOverlay = (state) => {
+        let overlay = document.getElementById('auth_overlay');
+        let auth_modal = document.getElementById('auth_modal');
+        if (state == 'close') {
+            overlay.classList.add('hidden');
+            auth_modal.classList.add('hidden');
+            auth_modal.classList.remove('flex')
+        }else{
+            overlay.classList.remove('hidden');
+            auth_modal.classList.remove('hidden');
+            auth_modal.classList.add('flex')
+            loadPage('login');
+        }
+    }
+
+    let loadPage = (page) => {
+        let modalContent = document.getElementById('modal_content');
+        axios.get(`./components/${page}.html`)
+        .then((res) => {
+            modalContent.innerHTML = res.data;
+        })
+        .catch((error) => {
+            modalContent.innerText = error.response.status + '!  Page Not Found';
+            console.log(error.response.status, error.response.statusText);
+        })
+    }
+    
+</script>

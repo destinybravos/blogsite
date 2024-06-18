@@ -8,6 +8,9 @@
     <link rel="stylesheet" href="css/app.css">
     <link rel="stylesheet" href="fa_icons/css/all.css">
     <script src="js/app.js"></script>
+    <script>
+        alert('Hello');
+    </script>
 </head>
 <body class="bg-slate-100">
 

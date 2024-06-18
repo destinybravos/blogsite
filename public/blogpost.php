@@ -13,11 +13,11 @@
 
     <?php include_once 'components/header.html'  ?>
 
-    <div class="min-h-screen">
+    <div class="min-h-screen px-4 md:px-0">
 
-        <section class="max-w-6xl mx-auto my-10 flex gap-5 justify-between items-start relative">
+        <section class="max-w-6xl mx-auto my-10 flex flex-col md:flex-row gap-5 justify-between items-start relative">
             <!-- Main Post Content -->
-            <aside class="w-4/6">
+            <aside class="md:w-4/6">
                 <article>
                     <h1 class="text-4xl font-bold mb-5" id="post_title"></h1>
                     <div class="text-sm flex gap-4 items-center divide-x-2 mb-5">
@@ -35,10 +35,20 @@
                     </div>
 
                 </article>
+                <hr class="my-5">
+
+                <div class="flex items-center gap-3 py-2">
+                    <button class="py-1 px-3" onclick="likePost(event)">
+                        <i class="far fa-heart text-xl"></i>
+                    </button>
+                    <button class="py-1 px-3">
+                        <i class="far fa-comments text-xl"></i>
+                    </button>
+                </div>
             </aside>
 
             <!-- Side (Related Content) -->
-            <aside class="min-h-40 w-2/6 sticky top-36">
+            <aside class="min-h-40 md:w-2/6 sticky top-36">
                 <h1 class="mb-2 text-xl font-bold">Related Articles</h1>
 
                 <div id="related_content">
@@ -111,8 +121,6 @@
                 document.getElementById('related_content').innerHTML = postHTML;
             })
         }
-        
-        
     </script>
 </body>
 </html>

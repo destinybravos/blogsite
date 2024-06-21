@@ -1,5 +1,79 @@
 <div>
-    <h1>Sign Up</h1>
+    <section>
+        <div class="flex flex-col justify-center items-center h-auto">
+            <h1 class="text-2xl font-sans font-black text-[#334155]">Sign Up</h1>
+            <form action="#" method="">
+                <div class="py-4">
+                    <input type="text" name="username" placeholder="Username" required class="w-full h-10 outline-none p-2 bg-transparent text-black border-2 border-red-600 rounded-md active:border-[#334155] hover:border-[#334155]">
+                </div>
 
-    <button onclick="loadPage('login')" class="text-blue-500 text-sm hover:underline">Already have an account? Click to Login</button>
+                <div class="py-4">
+                    <input type="text" name="fullName" placeholder="Full Name" required class="w-full h-10 outline-none p-2 bg-transparent text-black border-2 border-red-600 rounded-md active:border-[#334155] hover:border-[#334155]">
+                </div>
+                
+                <div class="py-4">
+                    <input type="email" name="email" placeholder="name@email.com" required class="w-full h-10 outline-none p-2 bg-transparent text-black border-2 border-red-600 rounded-md active:border-[#334155] hover:border-[#334155]">
+                </div >
+                                
+                <div class="py-4">
+                    <input type="password" name="password" placeholder="Password" required class="w-full h-10 outline-none p-2 bg-transparent text-black border-2 border-red-600 rounded-md active:border-[#334155] hover:border-[#334155]">
+                </div>
+                <div class="py-2">
+                    <!-- <label for="" class=" font-sans text-lg">Choose Avatar</label>
+                    <input type="file" name="avatar" required class="  "> -->
+                    <button type="button" class="" id="collapsible">Choose Avatar</button>
+                    <div class="content grid grid-cols-4 gap-2">
+                        <div class="flex justify-center gap-4 ">
+                            <input type="radio" id="" name="avatar" value="">
+                            <div class="h-10 w-10 overflow-hidden rounded-full">
+                                <img src="./assets/avF.svg" alt="" class="h-10 w-10 rounded-full cursor-pointer">
+                            </div>
+                        </div>
+                        <div class="flex justify-center gap-4 ">
+                            <input type="radio" id="" name="avatar" value="">
+                            <div class="h-10 w-10 overflow-hidden rounded-full">
+                                <img src="./assets/avF.svg" alt="" class="h-10 w-10 rounded-full cursor-pointer">
+                            </div>
+                        </div>
+
+                        <div class="flex justify-center gap-4 ">
+                            <input type="radio" id="" name="avatar" value="">
+                            <div class="h-10 w-10 overflow-hidden rounded-full">
+                                <img src="./assets/avF.svg" alt="" class="h-10 w-10 rounded-full cursor-pointer">
+                            </div>
+                        </div>
+
+                        <div class="flex justify-center gap-4 ">
+                            <input type="radio" id="" name="avatar" value="">
+                            <div class="h-10 w-10 overflow-hidden rounded-full">
+                                <img src="./assets/avF.svg" alt="" class="h-10 w-10 rounded-full cursor-pointer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="py-4 flex justify-center items-center font-sans text-lg pt-2 pb-1">
+                    <button class="p-2 bg-red-600 w-1/2 text-white hover:bg-[#334155]">Signup</button>
+                </div>
+                <div class="flex justify-center items-center font-sans text-lg py-2">
+                    <button onclick="loadPage('login')" class="text-white text-sm hover:underline hover:text-blue-500">Already have an account? Click to Login</button>
+                </div>
+            </form>
+        </div>       
+    </section>
 </div>
+
+<script>
+    // var coll = document.getElementsById("collapsible");
+      
+
+    //   document.addEventListener("click", function() {
+    //     this.classList.toggle("active");
+    //     var content = this.nextElementSibling;
+    //     if (content.style.display === "block") {
+    //       content.style.display = "none";
+    //     } else {
+    //       content.style.display = "block";
+    //     }
+    //   })
+</script>

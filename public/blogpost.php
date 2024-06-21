@@ -41,7 +41,7 @@
                     <button class="py-1 px-3" onclick="likePost(event)">
                         <i class="far fa-heart text-xl"></i>
                     </button>
-                    <button class="py-1 px-3">
+                    <button class="py-1 px-3" onclick="openComment()">
                         <i class="far fa-comments text-xl"></i>
                     </button>
                 </div>
@@ -120,6 +120,17 @@
                 // Display on  html element
                 document.getElementById('related_content').innerHTML = postHTML;
             })
+        }
+
+        let openComment = () => {
+            axios.post(`${baseUrl}/v1/auth/test.php`, {}, {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization' : 'Bearer 123',
+                }
+            })
+            .then()
+            .catch()
         }
     </script>
 </body>

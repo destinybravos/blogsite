@@ -97,7 +97,7 @@
 <!-- Overlay -->
 <div id="auth_overlay" class="fixed top-0 left-0 h-screen w-full bg-black bg-opacity-50 z-10 hidden" onclick="toggleAuthOverlay('close')"></div>
 <!-- Auth Modal -->
- <div id="auth_modal" class="fixed top-0 left-0 h-screen w-full z-20 hidden items-center justify-center p-4"  onclick="toggleAuthOverlay('open')">
+ <div id="auth_modal" class="fixed top-0 left-0 h-screen w-full z-20 hidden items-center justify-center p-4">
     <section class="min-h-10 bg-[url('../assets/dummy/blog_bn_main.jpg')]  object-cover w-full max-w-sm py-3 px-4 rounded-md">
         <div id="modal_content">
 
@@ -117,10 +117,10 @@
 
     // let userString = JSON.stringify(user);
     // let revertedUserObj = JSON.parse(userString);
-    sessionStorage.setItem('user', JSON.stringify(user))
-    let userString = sessionStorage.getItem('user');
-    let revertedUserObj = JSON.parse(userString);
-    console.log(userString, revertedUserObj);
+    // sessionStorage.setItem('user', JSON.stringify(user))
+    // let userString = sessionStorage.getItem('user');
+    // let revertedUserObj = JSON.parse(userString);
+    // console.log(userString, revertedUserObj);
 
 
     // Check Login State
@@ -169,7 +169,7 @@
             overlay.classList.remove('hidden');
             auth_modal.classList.remove('hidden');
             auth_modal.classList.add('flex')
-            loadPage('login');
+            loadPage('signup');
         }
     }
 
@@ -184,5 +184,54 @@
             console.log(error.response.status, error.response.statusText);
         })
     }
+
+    let loadAvatars = () => {
+        axios.get(`${baseUrl}/v1/avatar/fetch.php`)
+        .then((res) => {
+            let avatars = res.data.avatars;
+            let images = '';
+            avatars.forEach((avatar) => {
+                images += `<aside class="h-10 w-10 m-3 rounded-md object-cover avatars">
+                                <img src="${avatar}" alt="" class="w-full min-h-full" onclick="setAvatar(event)">
+                            </aside>`;
+            });
+            document.querySelector('#avatar-container section').innerHTML = images;
+        })
+    }
+
+    let showAvatars = () => {
+        let container = document.getElementById('avatar-container');
+        loadAvatars();
+        container.classList.remove('hidden');
+    }
     
+    let dismissAvatars = () => {
+        let container = document.getElementById('avatar-container');
+        container.classList.add('hidden');
+    }
+
+    let setAvatar = (ev) => {
+        let imgSrc = ev.target.getAttribute('src');
+        document.getElementById('avatar').value = imgSrc;
+        dismissAvatars()
+    }
+
+    let processSignUp = (ev) => {
+        ev.preventDefault();
+        let formdata = new FormData(ev.target);
+        axios.post(`${baseUrl}/v1/auth/register.php`, formdata)
+        .then((res) => {
+            if (res.data.success) {
+                sessionStorage.setItem('user', JSON.stringify(res.data.user))
+                sessionStorage.setItem('access_token', res.data.api_token)
+                sessionStorage.setItem('isLogin', 'true')
+                location.reload();
+            }else{
+                console.log(res.data.message);
+            }
+        })
+        .catch((error) => {
+            console.log(error.response.data.message);
+        })
+    }
 </script>

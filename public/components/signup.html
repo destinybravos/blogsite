@@ -2,13 +2,13 @@
     <section>
         <div class="flex flex-col justify-center items-center h-auto">
             <h1 class="text-2xl font-sans font-black text-[#334155]">Sign Up</h1>
-            <form action="#" method="">
+            <form method="post" onsubmit="processSignUp(event)">
                 <div class="py-4">
                     <input type="text" name="username" placeholder="Username" required class="w-full h-10 outline-none p-2 bg-transparent text-black border-2 border-red-600 rounded-md active:border-[#334155] hover:border-[#334155]">
                 </div>
 
                 <div class="py-4">
-                    <input type="text" name="fullName" placeholder="Full Name" required class="w-full h-10 outline-none p-2 bg-transparent text-black border-2 border-red-600 rounded-md active:border-[#334155] hover:border-[#334155]">
+                    <input type="text" name="fullname" placeholder="Full Name" required class="w-full h-10 outline-none p-2 bg-transparent text-black border-2 border-red-600 rounded-md active:border-[#334155] hover:border-[#334155]">
                 </div>
                 
                 <div class="py-4">
@@ -18,37 +18,10 @@
                 <div class="py-4">
                     <input type="password" name="password" placeholder="Password" required class="w-full h-10 outline-none p-2 bg-transparent text-black border-2 border-red-600 rounded-md active:border-[#334155] hover:border-[#334155]">
                 </div>
-                <div class="py-2">
-                    <!-- <label for="" class=" font-sans text-lg">Choose Avatar</label>
-                    <input type="file" name="avatar" required class="  "> -->
-                    <button type="button" class="" id="collapsible">Choose Avatar</button>
-                    <div class="content grid grid-cols-4 gap-2">
-                        <div class="flex justify-center gap-4 ">
-                            <input type="radio" id="" name="avatar" value="">
-                            <div class="h-10 w-10 overflow-hidden rounded-full">
-                                <img src="./assets/avF.svg" alt="" class="h-10 w-10 rounded-full cursor-pointer">
-                            </div>
-                        </div>
-                        <div class="flex justify-center gap-4 ">
-                            <input type="radio" id="" name="avatar" value="">
-                            <div class="h-10 w-10 overflow-hidden rounded-full">
-                                <img src="./assets/avF.svg" alt="" class="h-10 w-10 rounded-full cursor-pointer">
-                            </div>
-                        </div>
-
-                        <div class="flex justify-center gap-4 ">
-                            <input type="radio" id="" name="avatar" value="">
-                            <div class="h-10 w-10 overflow-hidden rounded-full">
-                                <img src="./assets/avF.svg" alt="" class="h-10 w-10 rounded-full cursor-pointer">
-                            </div>
-                        </div>
-
-                        <div class="flex justify-center gap-4 ">
-                            <input type="radio" id="" name="avatar" value="">
-                            <div class="h-10 w-10 overflow-hidden rounded-full">
-                                <img src="./assets/avF.svg" alt="" class="h-10 w-10 rounded-full cursor-pointer">
-                            </div>
-                        </div>
+                <div class="py-2 relative">
+                    <input type="text" onfocus="showAvatars()" name="avatar" id="avatar" placeholder="avatar URL" required class="w-full h-10 outline-none p-2 bg-transparent text-black border-2 border-red-600 rounded-md active:border-[#334155] hover:border-[#334155]">
+                    <div id="avatar-container" class="absolute max-h-32 overflow-y-auto w-full bg-white hidden">
+                        <section class="w-full py-1 px-2 grid grid-cols-4"></section>
                     </div>
                 </div>
     
@@ -62,18 +35,3 @@
         </div>       
     </section>
 </div>
-
-<script>
-    // var coll = document.getElementsById("collapsible");
-      
-
-    //   document.addEventListener("click", function() {
-    //     this.classList.toggle("active");
-    //     var content = this.nextElementSibling;
-    //     if (content.style.display === "block") {
-    //       content.style.display = "none";
-    //     } else {
-    //       content.style.display = "block";
-    //     }
-    //   })
-</script>
